@@ -1,12 +1,5 @@
 
-linux-g++ {
-    SUB_LIB = "linux"
-}
-
-linux-g++-32 {
-    SUB_LIB = "linux"
-}
-linux-g++-64 {
+linux-g++* {
     SUB_LIB = "linux"
 }
 
@@ -32,24 +25,18 @@ INCLUDEPATH += "$$XPDF_DIR/goo"
 INCLUDEPATH += "$$XPDF_DIR/splash"
 
 
-linux-g++ {
-    LIBS        += -lpaper -lt1
-}
-linux-g++-32 {
-    LIBS        += -lpaper -lt1
-}
-linux-g++-64 {
+linux-g++* {
     LIBS        += -lpaper -lt1
 }
 
 win32 {
-    LIBS        += "-L$$PWD/openssl/0.9.8i/lib/VC/static" "-llibeay32MD"
-    INCLUDEPATH += "$$PWD/openssl/0.9.8i/include"
+    LIBS        += "-L$$PWD/openssl/openssl-1.0.0d/out32dll" "-llibeay32"
+    INCLUDEPATH += "$$PWD/openssl/openssl-1.0.0d/inc32"
 
     LIBS        += "-lWmvcore"
     LIBS        += "-lWinmm"
-	
-	# need those link if we want to change default printer and print usind shell command
+
+    # need those link if we want to change default printer and print usind shell command
     LIBS        += "-L$$PWD/microsoft/lib" "-lWinspool"
     LIBS        += "-L$$PWD/microsoft/lib" "-lshell32"
 
@@ -63,7 +50,7 @@ macx {
     LIBS         += "-framework CoreAudio"
     LIBS         += "-framework ApplicationServices"
     LIBS         += "-framework Carbon"
-            
+
     LIBS         += "-lcrypto"
     LIBS         += "$$PWD/unsanity/ape/APELite.o"
     INCLUDEPATH  += "$$PWD/unsanity/ape"
